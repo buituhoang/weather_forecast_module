@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="date_tree" model="ir.ui.view">
+        <field name="name">weather.forecast.date.tree</field>
+        <field name="model">weather.forecast.date</field>
+        <field name="arch" type="xml">
+            <tree string="Laboratory">
+                <field name="date"/>
+                <field name="day"/>
+                <field name="weather_icon"/>
+                <field name="weather"/>
+                <field name="high_temp"/>
+                <field name="low_temp"/>
+                <field name="wind_speed"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="date_form" model="ir.ui.view">
+        <field name="name">weather.forecast.date.form</field>
+        <field name="model">weather.forecast.date</field>
+        <field name="arch" type="xml">
+            <form string="Day">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <strong>
+                                <field name="date"/>
+                                <div> </div>
+                                <field name="day"/>
+                            </strong>
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="weather_icon"/>
+                            <field name="wind_speed"/>
+                            <field name="weather"/>
+                        </group>
+                        <group>
+                            <field name="high_temp"/>
+                            <field name="low_temp"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="date_action" model="ir.actions.act_window">
+        <field name="name">Dates</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">weather.forecast.date</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new weather record.
+            </p>
+        </field>
+    </record>
+
+    <menuitem id="weather_forecast_root"
+              name="Weather Forecast"
+              web_icon="weather_forecast,static/description/icon.png"
+              sequence="1"/>
+
+    <menuitem id="weather_forecast_date"
+              name="Dates"
+              parent="weather_forecast_root"
+              action="date_action"/>
+
+
+</odoo>

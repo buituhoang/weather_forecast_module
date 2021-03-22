@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <template id="weather_assets_frontend" inherit_id="web.assets_frontend">
+            <xpath expr="script[last()]" position="after">
+                <script type="text/javascript" src="/weather_forecast/static/src/js/weather.js"></script>
+            </xpath>
+        </template>
+
+        <record id="menu_weather_forecast" model="website.menu">
+            <field name="name">Weather Forecast</field>
+            <field name="url">/update_weather</field>
+            <field name="parent_id" ref="website.main_menu"/>
+            <field name="sequence">44</field>
+        </record>
+
+        <template id="dates_weather" name="Weather Forecast of dates">
+            <t t-call="website.layout">
+                <div t-if="not dates" class="alert alert-info">
+                    No record.
+                </div>
+                <div t-if="dates">
+                    <div>
+                        <a role="button" class="btn btn-info" t-attf-href="/update_weather" style="margin: 2vh">Update Information</a>
+                    </div>
+                    <div align="center">
+                        <t t-if="count==1">
+                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_1"> 1 day</a>
+                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_3"> 3 days</a>
+                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_7"> 7 days</a>
+                        </t>
+                        <t t-elif="count==3">
+                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_1"> 1 day</a>
+                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_3"> 3 days</a>
+                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_7"> 7 days</a>
+                        </t>
+                        <t t-else="">
+                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_1"> 1 day</a>
+                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_3"> 3 days</a>
+                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_7"> 7 days</a>
+                        </t>
+                    </div>
+                </div>
+                <br></br>
+                <div>
+                    <table class="tg table-bordered table-striped table-sm" id="date" t-if="dates" align="center">
+                        <tbody>
+                            <t t-foreach="dates" t-as="date">
+                                <tr>
+                                    <td rowspan="2">
+                                        <img t-if="date.weather_icon=='sun'" src="/weather_forecast/static/src/img/sunny.png"
+                                             class="img" style="max-width: 40mm; max-height: 20mm;"/>
+                                        <img t-elif="date.weather_icon=='rain'"
+                                             src="/weather_forecast/static/src/img/rainy.png"
+                                             class="img" style="max-width: 40mm; max-height: 20mm;"/>
+                                        <img t-else=""
+                                             src="/weather_forecast/static/src/img/cloudy.png"
+                                             class="img" style="max-width: 40mm; max-height: 20mm;"/>
+                                    </td>
+                                    <td><strong t-field="date.day"/></td>
+                                </tr>
+                                <tr>
+                                    <td><p t-field="date.date"/></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Wind speed: <span t-field="date.wind_speed"/>km/h</td>
+                                    <td>Highest temperature: <span t-field="date.high_temp"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Lowest temperature: <span t-field="date.low_temp"/></td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>
