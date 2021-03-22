@@ -18,15 +18,23 @@ class data_scrapping:
             day = items.find_all("span")
             try:
                 dict["high_temp"]= int(day[0].text.split('°')[0])
+            except:
+                dict["high_temp"] = ""
+            try:
                 dict["low_temp"]= int(day[2].text.split('°')[0])
+            except:
+                dict["low_temp"] = ""
+            try:
                 dict["weather"]= day[3].text.split('/')[0].replace('AM ','')
+            except:
+                dict["weather"] = day[3].text.replace('PM ', '')
+            try:
                 dict["humidity"]= int(day[4].text.split('%')[0])
+            except:
+                dict["humidity"] = ""
+            try:
                 dict["wind_speed"]= round(int(day[5].text.split(' ')[1])*1.609344,1)
             except:
-                dict["high_temp"]= ""
-                dict["low_temp"]= ""
-                dict["weather"]= "None"
-                dict["humidity"]= ""
                 dict["wind_speed"]= ""
             list.append(dict) 
         # print(list)

@@ -8,11 +8,11 @@
             <tree string="Laboratory">
                 <field name="date"/>
                 <field name="day"/>
-                <field name="weather_icon"/>
                 <field name="weather"/>
                 <field name="high_temp"/>
                 <field name="low_temp"/>
                 <field name="wind_speed"/>
+                <field name="humidity"/>
             </tree>
         </field>
     </record>
@@ -32,11 +32,17 @@
                             </strong>
                         </h1>
                     </div>
+
+                    <group>
+                        <h2>
+                            <span>Weather: </span>
+                            <field name="weather"/>
+                        </h2>
+                    </group>
                     <group>
                         <group>
-                            <field name="weather_icon"/>
                             <field name="wind_speed"/>
-                            <field name="weather"/>
+                            <field name="humidity"/>
                         </group>
                         <group>
                             <field name="high_temp"/>

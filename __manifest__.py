@@ -14,6 +14,7 @@
         'views/date.xml',
         'views/templates.xml',
         'security/ir.model.access.csv',
+        'data/cron.xml',
     ],
     'demo': [],
     'qweb': [],

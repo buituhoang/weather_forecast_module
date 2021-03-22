@@ -21,7 +21,8 @@
                 </div>
                 <div t-if="dates">
                     <div>
-                        <a role="button" class="btn btn-info" t-attf-href="/update_weather" style="margin: 2vh">Update Information</a>
+                        <a role="button" class="btn btn-info" t-attf-href="/update_weather" style="margin: 2vh">Update
+                            Information</a>
                     </div>
                     <div align="center">
                         <t t-if="count==1">
@@ -43,15 +44,19 @@
                 </div>
                 <br></br>
                 <div>
-                    <table class="tg table-bordered table-striped table-sm" id="date" t-if="dates" align="center">
-                        <tbody>
-                            <t t-foreach="dates" t-as="date">
+                    <t t-foreach="dates" t-as="date">
+                        <table class="tg table-bordered table-striped table-sm" id="date" t-if="dates" align="center" style="margin-top: 2vh; margin-bottom: 2vh; width: 30%">
+                            <tbody >
                                 <tr>
-                                    <td rowspan="2">
-                                        <img t-if="date.weather_icon=='sun'" src="/weather_forecast/static/src/img/sunny.png"
+                                    <td rowspan="2" align="center">
+                                        <img t-if="date.weather_icon=='sun'"
+                                             src="/weather_forecast/static/src/img/sunny.png"
                                              class="img" style="max-width: 40mm; max-height: 20mm;"/>
                                         <img t-elif="date.weather_icon=='rain'"
                                              src="/weather_forecast/static/src/img/rainy.png"
+                                             class="img" style="max-width: 40mm; max-height: 20mm;"/>
+                                        <img t-elif="date.weather_icon=='storm'"
+                                             src="/weather_forecast/static/src/img/storm.png"
                                              class="img" style="max-width: 40mm; max-height: 20mm;"/>
                                         <img t-else=""
                                              src="/weather_forecast/static/src/img/cloudy.png"
@@ -63,15 +68,21 @@
                                     <td><p t-field="date.date"/></td>
                                 </tr>
                                 <tr>
-                                    <td rowspan="2">Wind speed: <span t-field="date.wind_speed"/>km/h</td>
-                                    <td>Highest temperature: <span t-field="date.high_temp"/></td>
+                                    <td colspan="2" align="center">
+                                        <span t-field="date.weather"/>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td>Lowest temperature: <span t-field="date.low_temp"/></td>
+                                    <td>Wind speed: <span t-field="date.wind_speed"/>km/h</td>
+                                    <td>Highest temperature: <span t-field="date.high_temp"/>°C</td>
                                 </tr>
-                            </t>
-                        </tbody>
-                    </table>
+                                <tr>
+                                    <td>Humidity: <span t-field="date.wind_speed"/>%</td>
+                                    <td>Lowest temperature: <span t-field="date.low_temp"/>°C</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </t>
                 </div>
             </t>
         </template>
