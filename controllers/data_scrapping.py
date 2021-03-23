@@ -9,8 +9,7 @@ class data_scrapping:
         file = requests.get('https://weather.com/en-GB/weather/tenday/l/21.00,105.84')
         soup = BeautifulSoup(file.text, 'html.parser')
 
-        list =[] 
-        
+        list =[]
         content = soup.find_all("div", {"data-testid": "DetailsSummary"})
 
         for items in content: 
@@ -37,11 +36,5 @@ class data_scrapping:
             except:
                 dict["wind_speed"]= ""
             list.append(dict) 
-        # print(list)
         self.data = list
-        # self.list = list
-
-# data = data_scrapping()
-# data.get_weather()
-# print(data.data)
         

@@ -25,7 +25,7 @@ class Hospital(http.Controller):
         data = obj.data
         date = datetime.date.today()
         if data:
-            for i in range(9):
+            for i in range(14):
                 data[i]['date'] = date
                 date_info = request.env['weather.forecast.date'].sudo().search([('date', '=', date)], limit=1)
                 if date_info:
