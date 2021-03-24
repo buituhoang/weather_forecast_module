@@ -25,28 +25,40 @@
                             Information</a>
                     </div>
                     <div align="center">
-                        <t t-if="count==1">
-                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_1"> 1 day</a>
-                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_3"> 3 days</a>
-                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_7"> 7 days</a>
-                        </t>
-                        <t t-elif="count==3">
-                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_1"> 1 day</a>
-                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_3"> 3 days</a>
-                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_7"> 7 days</a>
-                        </t>
-                        <t t-else="">
-                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_1"> 1 day</a>
-                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_3"> 3 days</a>
-                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_7"> 7 days</a>
-                        </t>
+                        <button type="button" class="btn btn-primary" id="get_weather_one_day">
+                            1 day
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="get_weather_three_days">
+                            3 days
+                        </button>
+                        <button type="button" class="btn btn-secondary" id="get_weather_week">
+                            7 days
+                        </button>
                     </div>
+<!--                    <div align="center">-->
+<!--                        <t t-if="count==1">-->
+<!--                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_1"> 1 day</a>-->
+<!--                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_3"> 3 days</a>-->
+<!--                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_7"> 7 days</a>-->
+<!--                        </t>-->
+<!--                        <t t-elif="count==3">-->
+<!--                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_1"> 1 day</a>-->
+<!--                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_3"> 3 days</a>-->
+<!--                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_7"> 7 days</a>-->
+<!--                        </t>-->
+<!--                        <t t-else="">-->
+<!--                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_1"> 1 day</a>-->
+<!--                            <a role="button" class="btn btn-secondary" t-attf-href="/weather_forecast_3"> 3 days</a>-->
+<!--                            <a role="button" class="btn btn-primary" t-attf-href="/weather_forecast_7"> 7 days</a>-->
+<!--                        </t>-->
+<!--                    </div>-->
                 </div>
                 <br></br>
-                <div>
+                <div id="temp_table">
                     <t t-foreach="dates" t-as="date">
-                        <table class="tg table-bordered table-striped table-sm" id="date" t-if="dates" align="center" style="margin-top: 2vh; margin-bottom: 2vh; width: 30%">
-                            <tbody >
+                        <table class="tg table-bordered table-striped table-sm" id="date" t-if="dates" align="center"
+                               style="margin-top: 2vh; margin-bottom: 2vh; width: 30%">
+                            <tbody>
                                 <tr>
                                     <td rowspan="2" align="center">
                                         <img t-if="date.weather_icon=='sun'"
@@ -65,7 +77,9 @@
                                     <td><strong t-field="date.day"/></td>
                                 </tr>
                                 <tr>
-                                    <td><p t-field="date.date"/></td>
+                                    <td>
+                                        <span t-esc="time.strftime('%d/%m/%Y',time.strptime(str(date.date),'%Y-%m-%d'))"/>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td colspan="2" align="center">
@@ -77,12 +91,14 @@
                                     <td>Highest temperature: <span t-field="date.high_temp"/>°C</td>
                                 </tr>
                                 <tr>
-                                    <td>Humidity: <span t-field="date.wind_speed"/>%</td>
+                                    <td>Chance of Rain: <span t-field="date.rain_chance"/>%</td>
                                     <td>Lowest temperature: <span t-field="date.low_temp"/>°C</td>
                                 </tr>
                             </tbody>
                         </table>
                     </t>
+                </div>
+                <div id="test_ajax_table">
                 </div>
             </t>
         </template>

@@ -12,7 +12,7 @@
                 <field name="high_temp"/>
                 <field name="low_temp"/>
                 <field name="wind_speed"/>
-                <field name="humidity"/>
+                <field name="rain_chance"/>
             </tree>
         </field>
     </record>
@@ -27,7 +27,7 @@
                         <h1>
                             <strong>
                                 <field name="date"/>
-                                <div> </div>
+                                <div></div>
                                 <field name="day"/>
                             </strong>
                         </h1>
@@ -41,7 +41,7 @@
                     <group>
                         <group>
                             <field name="wind_speed"/>
-                            <field name="humidity"/>
+                            <field name="rain_chance"/>
                         </group>
                         <group>
                             <field name="high_temp"/>
@@ -74,6 +74,5 @@
               name="Dates"
               parent="weather_forecast_root"
               action="date_action"/>
-
 
 </odoo>

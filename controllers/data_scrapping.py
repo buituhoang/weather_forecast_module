@@ -28,9 +28,9 @@ class data_scrapping:
             except:
                 dict["weather"] = day[3].text.replace('PM ', '')
             try:
-                dict["humidity"]= int(day[4].text.split('%')[0])
+                dict["rain_chance"]= int(day[4].text.split('%')[0])
             except:
-                dict["humidity"] = ""
+                dict["rain_chance"] = ""
             try:
                 dict["wind_speed"]= round(int(day[5].text.split(' ')[1])*1.609344,1)
             except:
